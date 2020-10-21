@@ -1,0 +1,120 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;1,700&display=swap');
+:root{
+    font-size: 62.5%;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    place-items: center;
+    font-family: 'Lato', sans-serif;
+}
+
+img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: .4s linear;
+}
+button{
+    border: none;
+    border-radius: .5rem;
+    outline: none;
+    padding: 2rem;
+}
+button:active{
+    background: #555 !important;
+}
+
+#controllers{
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: repeat(3, 30%);
+    gap: 1rem;
+    place-items: center;
+    padding: 2rem;
+}
+#mouse{
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 50% 50%;
+    gap: 1rem;
+    place-items: center;
+
+}
+
+#controllers .container{
+    width: 100%;
+}
+#mouse .container{
+    width: 50%;
+}
+#arrow-up{
+    grid-area: 1/2/1/2;
+}
+#arrow-right{
+    grid-area: 2/3/2/3;
+}
+#arrow-bottom{
+    grid-area: 3/2/3/2;
+}
+#arrow-left{
+    grid-area: 2/1/2/1;
+}
+
+#keyboard-radio{
+    grid-area: 2/1/2/3;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: nowrap;
+    font-size: 2rem;
+    font-weight: bold;
+    gap: 2rem;
+    padding: 6rem 3rem;
+    background: #222;
+    color: #fff;
+}
+#keyboard-radio input[type="text"]{
+    width: 100%;
+    font-size: 2.5rem;
+    padding: 1.5rem 0 1.5rem .5rem;
+    border: none;
+    outline: none;
+}
+#keyboard-radio input[type="checkbox"]{
+    width: 5rem;
+    height: 5rem;
+}
+#keyboard-radio button{
+    background: #fff;
+    color: #111;
+    font-size: 3rem;
+    padding: 1rem 1.5rem;
+}
+.checkbox{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-right: 2px solid rgba(0, 0, 0, 0.3);
+    padding-right: 1rem;
+}
+
+#trackpad{
+    width: 80%;
+    height: 50vh;
+    background: linear-gradient(45deg, #222 0%, #ccc 100%);
+    grid-column-start: 1;
+    grid-column-end: 3;
+    margin: 3rem 0;
+    border-radius: 1rem;
+}

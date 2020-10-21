@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta charset="utf-8" name="viwport" content="width=device_width">
+	<link rel="stylesheet" type="text/css" href="./static/style.css">
+	<title>Joystick Python</title>
+
+</head>
+<body>
+	<div id="controllers">
+		<button class="container" id="arrow-up">
+			<img src="./static/arrow-top.svg" alt="arrow image">
+		</button>
+		<button class="container" id="arrow-right">
+			<img src="./static/arrow-right.svg" alt="arrow image">
+		</button>
+		<button class="container" id="arrow-bottom">
+			<img src="./static/arrow-bottom.svg" alt="arrow image">
+		</button>
+		<button class="container" id="arrow-left">
+			<img src="./static/arrow-left.svg" alt="arrow image">
+		</button>
+	</div>
+	<div id="mouse">
+		<button class="container" id="click">
+			<img src="./static/click.svg" alt="arrow image">
+		</button>
+		<button class="container" id="right-click">
+			<img src="./static/right-click.svg" alt="arrow image">
+		</button>
+		<button class="container" id="page-up">
+			<img src="./static/page-up.svg" alt="arrow image">
+		</button>
+		<button class="container" id="page-down">
+			<img src="./static/page-down.svg" alt="arrow image">
+		</button>
+	</div>
+
+	<div id="keyboard-radio">
+		<div class="checkbox">
+			<label for="keyboard">Toggle movement by keyboard</label>
+			<input type="checkbox" id="keyboard" name="keyboard" value="keyboard">
+		</div>
+		<input type="text" name="send_txt" placeholder="Digite algo..." id="input-txt">
+		<button id="send-cmd">Send</button>
+	</div>
+
+	<div id="trackpad">
+		
+	</div>
+
+	<script src="./static/app.js"></script>
+</body>
+</html>
