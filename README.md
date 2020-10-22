@@ -1,6 +1,6 @@
 # joystick-mouse-controller
 
-I made this project beacuse some keys of my keyboard stopped working.
+I made this project beacuse some keys of my keyboard stopped working (LOL)
 
 ## How it works?
 It creates a simple server on your computer that can receive api calls from a HTML interface with commands on how to move the mouse cursor or to print something on screen.
