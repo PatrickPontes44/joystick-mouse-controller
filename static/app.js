@@ -10,17 +10,24 @@ document.querySelector("#right-click").addEventListener("click",()=>{postClick('
 document.querySelector("#page-up").addEventListener("click",()=>{postPage('page-up')})
 document.querySelector("#page-down").addEventListener("click",()=>{postPage('page-down')})
 
-document.querySelector("#send-cmd").addEventListener("click",()=>{postCommand()})
+document.querySelector("#send-cmd").addEventListener("click",postCommand)
 
-document.querySelector("#trackpad").addEventListener("click",()=>{postCommand()})
+document.querySelector("#trackpad").addEventListener("click",moveTrackpad)
+
+document.querySelector("#mouseRange").addEventListener("input",(e)=>{
+    document.querySelector("#mouseRangeSpan").innerText = `Mouse range: ${e.currentTarget.value}`
+
+})
+
 
 
 async function postMove(direction){
     const checkbox = document.querySelector("#keyboard");
     const url = checkbox.checked ? 'http://192.168.0.16:5000/keyboard' : 'http://192.168.0.16:5000/mouse';
+    const mouseDistance = document.querySelector("#mouseRange").value
     await fetch(url, {
         method: 'POST',
-        body: JSON.stringify(direction)
+        body: JSON.stringify([direction, mouseDistance])
     })
     // let data = await res.text();
     // console.log(data);
@@ -39,6 +46,15 @@ async function postPage(page){
     })
     // let data = await res.text();
     // console.log(data);
+}
+
+async function moveTrackpad(e){
+    const direction = [e.offsetX, e.offsetY, e.currentTarget.clientWidth, e.currentTarget.clientHeight];
+    await fetch('http://192.168.0.16:5000/trackpad', {
+        method: 'POST',
+        body: JSON.stringify(direction)
+    })
+
 }
 
 async function postCommand(){

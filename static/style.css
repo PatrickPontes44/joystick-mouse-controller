@@ -57,6 +57,47 @@ button:active{
 #mouse .container{
     width: 50%;
 }
+#mouse .slider-container{
+    width: 90%;
+    grid-column-start: 1;
+    grid-column-end: 3;
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    font-weight: bold;
+
+}
+ #mouseRange{
+    -webkit-appearance: none;  /* Override default CSS styles */
+    appearance: none;
+    width: 100%; /* Full-width */
+    height: 20px; /* Specified height */
+    background: #d3d3d3; /* Grey background */
+    outline: none; /* Remove outline */
+    opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
+    -webkit-transition: .2s; /* 0.2 seconds transition on hover */
+    transition: opacity .2s;
+}
+#mouseRange::-webkit-slider-thumb {
+    -webkit-appearance: none; /* Override default look */
+    appearance: none;
+    width: 30px; /* Set a specific slider handle width */
+    height: 30px; /* Slider handle height */
+    background: #222; /* Green background */
+    border-radius: 50%;
+    cursor: pointer; /* Cursor on hover */
+  }
+  
+  #mouseRange::-moz-range-thumb {
+    width: 30px; /* Set a specific slider handle width */
+    height: 30px; /* Slider handle height */
+    background: #222; /* Green background */
+    border-radius: 50%;
+    cursor: pointer; /* Cursor on hover */
+  }
 #arrow-up{
     grid-area: 1/2/1/2;
 }
@@ -110,8 +151,8 @@ button:active{
 }
 
 #trackpad{
-    width: 80%;
-    height: 50vh;
+    width: 90%;
+    height: 70vh;
     background: linear-gradient(45deg, #222 0%, #ccc 100%);
     grid-column-start: 1;
     grid-column-end: 3;

@@ -4,6 +4,7 @@ from flask_cors import CORS, cross_origin
 from pynput.mouse import Button, Controller
 from pynput.keyboard import Key, Controller as KeyboardController
 import json
+import ctypes
 
 
 app = Flask(__name__)
@@ -19,20 +20,20 @@ def index():
 def cursorMove():
     try:
         def move_mouse(direcao, mouse = Controller()):
-            distance = 30
+            distance = int(direcao[1])
             x, y = mouse.position
-            if direcao == 'up':
+            if direcao[0] == 'up':
                 y-=distance
-            elif direcao == 'down':
+            elif direcao[0] == 'down':
                 y+=distance
-            elif direcao == 'right':
+            elif direcao[0] == 'right':
                 x+=distance
-            elif direcao == 'left':
+            elif direcao[0] == 'left':
                 x-=distance
                 
             mouse.position = (x,y)
             
-        direction = str(request.get_json(force=True))
+        direction = request.get_json(force=True)
         
         resp = Response(move_mouse(direction),mimetype='text/plain')
             
@@ -61,9 +62,9 @@ def keyboard():
                 keyboard.release(Key.right)
             
             
-        direction = str(request.get_json(force=True))
+        direction = request.get_json(force=True)
         
-        resp = Response(move_key(direction),mimetype='text/plain')
+        resp = Response(move_key(direction[0]),mimetype='text/plain')
             
         resp.headers['Access-Control-Allow-Origin'] = '*'
         
@@ -71,6 +72,32 @@ def keyboard():
     except:
         return "bad request"
 
+@app.route("/trackpad", methods=['GET','POST'])
+def trackpadMove():
+    try:
+        def trackpad(direcao, mouse = Controller()):
+            user32 = ctypes.windll.user32
+            screensize = user32.GetSystemMetrics(0), user32.GetSystemMetrics(1)
+
+            elementSizeX = direcao[2]
+            elementSizeY = direcao[3]
+            elementPosX = direcao[0]
+            elementPosY = direcao[1]
+            screenX = screensize[0]
+            screenY = screensize[1]
+
+            resultX = int((screenX * elementPosX)/elementSizeX)
+            resultY = int((screenY * elementPosY)/elementSizeY)
+
+            mouse.position = (resultX,resultY)
+
+        direction = request.get_json(force=True)
+        resp = Response(trackpad(direction),mimetype='text/plain')
+                
+        resp.headers['Access-Control-Allow-Origin'] = '*'
+        return resp
+    except:
+        return "bad request"
 
 @app.route("/left-click", methods=['GET','POST'])
 def left():
